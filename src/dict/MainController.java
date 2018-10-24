@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -36,7 +37,7 @@ public class MainController implements Initializable {
     @FXML
     private Label sound;
     @FXML
-    private Label mean;
+    private TextArea mean;
 
     /**
      * Initializes the controller class.
@@ -44,7 +45,8 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        speech.setVisible(false);
+        mean.setEditable(false);
+        speech.setDisable(true);
         target_word.setVisible(false);
     }
 
@@ -66,23 +68,20 @@ public class MainController implements Initializable {
                 if (list.getWord_target().equals(w)) {
                     target_word.setText(list.getWord_target());
                     sound.setText(list.getSound());
-                    mean.setText(list.getWord_explain());
-                    speech.setVisible(true);
+                    mean.setText(DictionaryManagement.renderExplain(list.getWord_explain()));
+                    //speech.setDisable(false);
                     break;
 
                 } else {
                     target_word.setText("Không tìm thấy!");
                     sound.setText("");
                     mean.setText("Chuyển sang My Dictionary Management để thêm từ mới");
-                    speech.setDisable(true);
                 }
             }
         }
     }
 
     @FXML
-    private void speechIt(ActionEvent event) {
-
+    private void speechIt(ActionEvent event) throws Exception {
     }
-
 }

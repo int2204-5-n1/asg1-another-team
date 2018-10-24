@@ -24,7 +24,9 @@ public class DictionaryManagement {
     public static void createFile() throws IOException {
         try (FileWriter fileout = new FileWriter(source)) {
             for (Word i : Dictionary.word_list) {
-                fileout.write(i.getWord_target() + "#" + i.getType() + "#" + i.getSound() + "#" + i.getWord_explain() + "\r\n");
+                i.setWord_explain(i.getWord_explain().replace("\r\n", "\t"));
+                i.setWord_explain(i.getWord_explain().replace("\t○ ", "--"));
+                fileout.write(i.getWord_target() + "\t" + i.getSound() + "#" + i.getWord_explain() + "\r\n");
                 System.out.println("Done!");
             }
             fileout.close();
@@ -65,9 +67,9 @@ public class DictionaryManagement {
                 String[] words2 = words[1].split("#", 2);
                 if (words2.length == 2) {
                     temp.setSound(words2[0]);
-                    temp.setWord_explain(renderExplain(words2[1]));
+                    temp.setWord_explain(words2[1]);
                 } else {
-                    temp.setWord_explain(renderExplain(words2[0]));
+                    temp.setWord_explain(words2[0]);
                 }
                 Dictionary.word_list.add(temp);
 
@@ -79,9 +81,10 @@ public class DictionaryManagement {
     }
     
         
-    private static String renderExplain(String explain) {
+    public static String renderExplain(String explain) {
         String renderedExplain = null;
         renderedExplain = explain.replace("\t", "\r\n");
+        renderedExplain = renderedExplain.replace("--", "\t○ ");
         return renderedExplain;
     }
 }

@@ -39,9 +39,9 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#focusOn" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: white; -fx-background-radius: 0;" text="Button" textFill="#3498db">
+                        <Button mnemonicParsing="false" onAction="#focusOn" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: white; -fx-background-radius: 0;" text="Find" textFill="#3498db">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />

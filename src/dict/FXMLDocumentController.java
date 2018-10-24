@@ -65,7 +65,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        
         for (Word tmp : Dictionary.word_list) {
             listItems.add(tmp.getWord_target());
         }
@@ -101,7 +101,7 @@ public class FXMLDocumentController implements Initializable {
             tmp = Dictionary.word_list.get(index);
             wTarget.setText(tmp.getWord_target());
             wSound.setText(tmp.getSound());
-            wExplain.setText(tmp.getWord_explain());
+            wExplain.setText(DictionaryManagement.renderExplain(tmp.getWord_explain()));
             eng.setText(tmp.getWord_target());
         }
     }
@@ -120,7 +120,8 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void deleteAction(ActionEvent event) {
+    private void deleteAction(ActionEvent event
+    ) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Delete Word");
         alert.setHeaderText("Bạn chắc chắn muốn xóa?");
@@ -136,7 +137,8 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void updateAction(ActionEvent event) {
+    private void updateAction(ActionEvent event
+    ) {
         Word tmp;
         int index = listBoxMain.getSelectionModel().getSelectedIndex() - 1;
         tmp = Dictionary.word_list.get(index);

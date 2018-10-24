@@ -9,9 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="493.0" prefWidth="455.0" style="-fx-background-color: #3498db;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dict.MainController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="635.0" prefWidth="461.0" style="-fx-background-color: #3498db;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dict.MainController">
    <children>
-      <Button alignment="BOTTOM_RIGHT" layoutX="232.0" layoutY="456.0" mnemonicParsing="false" onAction="#showDictMangement" prefHeight="32.0" prefWidth="213.0" style="-fx-background-color: #3498db;" text="My Dictionary Management &gt;&gt;" textAlignment="RIGHT" textFill="WHITE">
+      <Button alignment="BOTTOM_RIGHT" layoutX="231.0" layoutY="584.0" mnemonicParsing="false" onAction="#showDictMangement" prefHeight="32.0" prefWidth="213.0" style="-fx-background-color: #3498db;" text="My Dictionary Management &gt;&gt;" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
@@ -19,7 +19,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Pane layoutX="2.0" prefHeight="70.0" prefWidth="459.0" AnchorPane.bottomAnchor="423.0">
+      <Pane layoutX="2.0" prefHeight="70.0" prefWidth="459.0" AnchorPane.bottomAnchor="565.0">
          <children>
             <TextField fx:id="search_text" layoutX="28.0" layoutY="29.0" prefHeight="29.0" prefWidth="326.0" promptText="Try some words" style="-fx-background-color: #3498db; -fx-border-color: white; -fx-border-width: 2px; -fx-border-radius: 5%; -fx-text-fill: white;">
                <font>
@@ -41,11 +41,16 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </Pane>
-      <Pane layoutX="31.0" layoutY="80.0" prefHeight="376.0" prefWidth="400.0" style="-fx-background-color: white; -fx-background-radius: 5PX; -fx-border-color: #2980b9; -fx-border-width: 5px; -fx-border-radius: 10px; -fx-background-radius: 15px;">
+      <Pane layoutX="31.0" layoutY="73.0" prefHeight="517.0" prefWidth="400.0" style="-fx-background-color: white; -fx-background-radius: 5PX; -fx-border-color: #2980b9; -fx-border-width: 5px; -fx-border-radius: 10px; -fx-background-radius: 15px;">
          <children>
+            <Label fx:id="sound" alignment="TOP_LEFT" layoutX="22.0" layoutY="53.0" prefHeight="16.0" prefWidth="148.0" style="-fx-background-color: white;" text="sound" textFill="#727272">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
             <HBox layoutX="16.0" layoutY="14.0" prefHeight="37.0" prefWidth="371.0">
                <children>
-                  <Button fx:id="speech" mnemonicParsing="false" onAction="#speechIt" prefHeight="32.0" prefWidth="71.0" style="-fx-background-color: white; -fx-border-color: #3498db; -fx-border-width: 2px; -fx-border-radius: 40%;" text="Speech" textFill="#3498db">
+                  <Button fx:id="speech" disable="true" mnemonicParsing="false" onAction="#speechIt" prefHeight="32.0" prefWidth="71.0" style="-fx-background-color: white; -fx-border-color: #3498db; -fx-border-width: 2px; -fx-border-radius: 40%;" text="Speech" textFill="#3498db">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -63,17 +68,12 @@
                   </Label>
                </children>
             </HBox>
-            <Label fx:id="sound" alignment="TOP_LEFT" layoutX="22.0" layoutY="51.0" prefHeight="16.0" prefWidth="148.0" style="-fx-background-color: white;" text="sound" textFill="#727272">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
-            <Label fx:id="mean" alignment="TOP_LEFT" layoutX="15.0" layoutY="105.0" prefHeight="259.0" prefWidth="371.0" textFill="#2980b9" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
             <Line endX="100.0" layoutX="116.0" layoutY="90.0" startX="-100.0" stroke="#363636" />
+            <TextArea fx:id="mean" layoutX="22.0" layoutY="102.0" prefHeight="395.0" prefWidth="371.0" style="-fx-background-color: white; -fx-text-fill: #2c3e50; -fx-border-color: white;" wrapText="true">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextArea>
          </children>
       </Pane>
    </children>
