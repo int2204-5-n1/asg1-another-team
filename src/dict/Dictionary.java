@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Nguyen Hoang Tuyen
+ * @author 16021228
  */
 public class Dictionary {
     public static ArrayList<Word> word_list = new ArrayList<Word>();

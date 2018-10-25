@@ -5,12 +5,16 @@ import java.io.File;
 
 /**
  *
- * @author Nguyen Hoang Tuyen
+ * @author 16021228
  */
 public class DictionaryManagement {
 
     static final String source = "file\\dict.txt";
 
+    /**
+     *
+     * @throws IOException
+     */
     public static void deleteFile() throws IOException {
 
         File file = new File(source);
@@ -21,40 +25,29 @@ public class DictionaryManagement {
         }
     }
 
+    /**
+     * Ham ghi tu dien ra file txt
+     * @throws IOException
+     */
     public static void createFile() throws IOException {
         try (FileWriter fileout = new FileWriter(source)) {
             for (Word i : Dictionary.word_list) {
                 i.setWord_explain(i.getWord_explain().replace("\r\n", "\t"));
-                i.setWord_explain(i.getWord_explain().replace("\t○ ", "--"));
+                i.setWord_explain(i.getWord_explain().replace("\t• ", "--"));
+                i.setWord_explain(i.getWord_explain().replace("\r\n ♦", "#"));
                 fileout.write(i.getWord_target() + "\t" + i.getSound() + "#" + i.getWord_explain() + "\r\n");
-                System.out.println("Done!");
+                
             }
             fileout.close();
         } catch (Exception e) {
             System.out.println("Writing error!");
         }
     }
-/*
-    public static void insertFromFile() throws IOException {
-        try {
-            File fileDir = new File(source);
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileDir), "UTF8"));
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] words = line.split("#");
-                Word temp = new Word();
-                temp.setWord_target(words[0]);
-                temp.setType(words[1]);
-                temp.setSound(words[2]);
-                temp.setWord_explain(words[3]);
-                Dictionary.word_list.add(temp);
-            }
-            System.out.println("File reading is successful");
-        } catch (IOException e) {
-            System.out.println("Something went wrong!");
-        }
-    }
-*/
+    
+    /**
+     * Ham doc tu dien tu file txt
+     * @throws IOException
+     */
     public static void insertFromFile2() throws IOException {
         try {
             File fileDir = new File("file\\old\\dict.txt");
@@ -80,11 +73,16 @@ public class DictionaryManagement {
         }
     }
     
-        
+    /**
+     * Ham xu ly String nghia
+     * @param explain nghia doc tu file
+     * @return nghia da duoc xu ly
+     */
     public static String renderExplain(String explain) {
         String renderedExplain = null;
         renderedExplain = explain.replace("\t", "\r\n");
-        renderedExplain = renderedExplain.replace("--", "\t○ ");
+        renderedExplain = renderedExplain.replace("--", "\t• ");
+        renderedExplain = renderedExplain.replace("#", "\r\n ♦");
         return renderedExplain;
     }
 }

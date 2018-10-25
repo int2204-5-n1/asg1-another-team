@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dict;
 
 import java.io.IOException;
@@ -14,7 +9,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Admin
+ * @author 16021228
  */
 public class Dict extends Application {
     
@@ -23,14 +18,11 @@ public class Dict extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         
         Scene scene = new Scene(root);
-        stage.setTitle("Dictionary by 16021228");
+        stage.setTitle("Dictionary by another team");
         stage.setScene(scene);
         stage.show();
     }
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) throws IOException {
         DictionaryManagement.insertFromFile2();
         launch(args);

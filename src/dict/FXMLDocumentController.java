@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dict;
 
 import java.io.IOException;
@@ -35,20 +30,13 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Admin
+ * @author 16021228
  */
 public class FXMLDocumentController implements Initializable {
 
     final ObservableList<String> listItems = FXCollections.observableArrayList("");
-
-    @FXML
-    private VBox VBoxMain;
-    @FXML
-    private Label TitleLbl;
     @FXML
     private ListView<String> listBoxMain;
-    @FXML
-    private HBox HBox4Btns;
     @FXML
     private Button BtnAdd;
     @FXML
@@ -173,6 +161,10 @@ public class FXMLDocumentController implements Initializable {
         app_stage.show();
     }
 
+    /**
+     * Hien thi hop thoai thong bao
+     * @param text noi dung thong bao
+     */
     private void showAlert(String text) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Notification");

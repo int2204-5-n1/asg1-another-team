@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,17 +20,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainController implements Initializable {
 
     @FXML
-    private AnchorPane rootPane;
-    @FXML
     private TextField search_text;
-    @FXML
-    private Button search;
     @FXML
     private Label target_word;
     @FXML
@@ -38,6 +37,9 @@ public class MainController implements Initializable {
     private Label sound;
     @FXML
     private TextArea mean;
+    private boolean result;
+    @FXML
+    private Button getVoice;
 
     /**
      * Initializes the controller class.
@@ -46,8 +48,9 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         mean.setEditable(false);
-        speech.setDisable(true);
-        target_word.setVisible(false);
+        speech.setVisible(false);
+        getVoice.setVisible(false);
+
     }
 
     @FXML
@@ -60,28 +63,57 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void dictSearch(ActionEvent event) {
+    private void dictSearch(ActionEvent event) throws Exception {
+
         String w = search_text.getText();
         if (!w.isEmpty()) {
-            target_word.setVisible(true);
-            for (Word list : Dictionary.word_list) {
-                if (list.getWord_target().equals(w)) {
-                    target_word.setText(list.getWord_target());
-                    sound.setText(list.getSound());
-                    mean.setText(DictionaryManagement.renderExplain(list.getWord_explain()));
-                    //speech.setDisable(false);
-                    break;
+            Word list = search(w);
+            sound.setVisible(result);
+            mean.setVisible(result);/*
+            getVoice.setVisible(true);
+            speech.setVisible(false);*/
+            getVoice.setVisible(result);
+            speech.setVisible(false);
+            if (result) {
+                target_word.setText(list.getWord_target());
+                sound.setText(list.getSound());
+                mean.setText(DictionaryManagement.renderExplain(list.getWord_explain()));
+            } else {
+                target_word.setText("Không tìm thấy!");
 
-                } else {
-                    target_word.setText("Không tìm thấy!");
-                    sound.setText("");
-                    mean.setText("Chuyển sang My Dictionary Management để thêm từ mới");
-                }
             }
         }
     }
 
     @FXML
     private void speechIt(ActionEvent event) throws Exception {
+        textToSpeech.play();
+    }
+
+    /**
+     * ham tim kiem tu
+     * @param w tu can tra
+     * @return doi tuong word da tim thay
+     * @throws Exception
+     */
+    private Word search(String w) throws Exception {
+        Word tmp = null;
+        for (Word list : Dictionary.word_list) {
+            if (list.getWord_target().equals(w)) {
+                result = true;
+                tmp = list;
+                break;
+            } else {
+                result = false;
+            }
+        }
+        return tmp;
+    }
+
+    @FXML
+    private void getVoice(ActionEvent event) throws Exception {
+        textToSpeech.speechIt(target_word.getText());
+        getVoice.setVisible(false);
+        speech.setVisible(true);
     }
 }
