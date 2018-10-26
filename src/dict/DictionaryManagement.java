@@ -50,7 +50,7 @@ public class DictionaryManagement {
      */
     public static void insertFromFile2() throws IOException {
         try {
-            File fileDir = new File("file\\old\\dict.txt");
+            File fileDir = new File(source);
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileDir), "UTF8"));
             String line;
             while ((line = br.readLine()) != null) {
